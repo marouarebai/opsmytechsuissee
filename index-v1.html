@@ -1,0 +1,1437 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>OPS My Tech — Plateforme Tech & Logistique en Europe</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --yellow: #FFDB01;
+      --blue-deep: #08092B;
+      --blue-brand: #0000A9;
+      --blue-mid: #0B0D3A;
+      --blue-card: #0E1042;
+      --blue-nav: #07082A;
+      --white: #FFFFFF;
+      --cream: #F8F7EC;
+      --text-muted: rgba(255,255,255,0.6);
+      --border: rgba(255,255,255,0.08);
+      --radius: 16px;
+      --radius-sm: 10px;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: var(--blue-deep);
+      color: var(--white);
+      overflow-x: hidden;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* ─── NAV ─── */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 48px;
+      height: 72px;
+      background: rgba(8,9,43,0.85);
+      backdrop-filter: blur(20px);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .nav-logo img { height: 28px; width: auto; }
+
+    .nav-links {
+      display: flex;
+      gap: 36px;
+      list-style: none;
+    }
+
+    .nav-links a {
+      color: rgba(255,255,255,0.8);
+      text-decoration: none;
+      font-size: 14px;
+      font-weight: 500;
+      letter-spacing: 0.02em;
+      transition: color .2s;
+    }
+
+    .nav-links a:hover { color: var(--yellow); }
+
+    .nav-ctas {
+      display: flex;
+      gap: 12px;
+      align-items: center;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 10px 22px;
+      border-radius: 8px;
+      font-size: 13px;
+      font-weight: 600;
+      cursor: pointer;
+      text-decoration: none;
+      transition: all .2s;
+      white-space: nowrap;
+    }
+
+    .btn-ghost {
+      background: transparent;
+      border: 1px solid rgba(255,255,255,0.25);
+      color: var(--white);
+    }
+
+    .btn-ghost:hover {
+      border-color: var(--yellow);
+      color: var(--yellow);
+    }
+
+    .btn-yellow {
+      background: var(--yellow);
+      border: 1px solid var(--yellow);
+      color: #000;
+    }
+
+    .btn-yellow:hover {
+      background: #ffe633;
+      transform: translateY(-1px);
+      box-shadow: 0 8px 24px rgba(255,219,1,0.35);
+    }
+
+    /* ─── HERO ─── */
+    .hero {
+      min-height: 100vh;
+      padding: 140px 48px 80px;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 80px;
+      align-items: center;
+      position: relative;
+      overflow: hidden;
+      background: radial-gradient(ellipse 60% 70% at 15% 50%, rgba(0,0,169,0.45) 0%, transparent 70%),
+                  radial-gradient(ellipse 50% 60% at 85% 20%, rgba(0,0,169,0.3) 0%, transparent 60%),
+                  var(--blue-deep);
+    }
+
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: -200px; left: -200px;
+      width: 600px; height: 600px;
+      background: radial-gradient(circle, rgba(0,0,200,0.5) 0%, transparent 65%);
+      border-radius: 50%;
+      pointer-events: none;
+    }
+
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 6px 14px;
+      background: rgba(255,219,1,0.1);
+      border: 1px solid rgba(255,219,1,0.25);
+      border-radius: 100px;
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      color: var(--yellow);
+      text-transform: uppercase;
+      margin-bottom: 28px;
+    }
+
+    .hero-badge::before {
+      content: '';
+      width: 6px; height: 6px;
+      background: var(--yellow);
+      border-radius: 50%;
+    }
+
+    .hero h1 {
+      font-size: clamp(36px, 4.5vw, 58px);
+      font-weight: 800;
+      line-height: 1.12;
+      letter-spacing: -0.03em;
+      margin-bottom: 24px;
+    }
+
+    .hero h1 .accent {
+      color: var(--yellow);
+    }
+
+    .hero-desc {
+      font-size: 16px;
+      line-height: 1.7;
+      color: var(--text-muted);
+      max-width: 480px;
+      margin-bottom: 40px;
+    }
+
+    .hero-ctas {
+      display: flex;
+      gap: 14px;
+      flex-wrap: wrap;
+    }
+
+    .btn-lg { padding: 14px 30px; font-size: 14px; border-radius: 10px; }
+
+    .hero-trusted {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-top: 52px;
+      padding-top: 32px;
+      border-top: 1px solid var(--border);
+    }
+
+    .hero-trusted-avatars {
+      display: flex;
+    }
+
+    .avatar {
+      width: 32px; height: 32px;
+      border-radius: 50%;
+      border: 2px solid var(--blue-deep);
+      background: linear-gradient(135deg, var(--blue-brand), #2200aa);
+      margin-right: -8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 11px;
+      font-weight: 700;
+    }
+
+    .hero-trusted-text {
+      font-size: 13px;
+      color: var(--text-muted);
+    }
+
+    .hero-trusted-text strong {
+      color: var(--white);
+      display: block;
+    }
+
+    /* Dashboard mockup */
+    .hero-visual {
+      position: relative;
+      z-index: 2;
+    }
+
+    .dashboard {
+      background: rgba(14,16,66,0.9);
+      border: 1px solid rgba(255,255,255,0.12);
+      border-radius: 20px;
+      padding: 24px;
+      backdrop-filter: blur(10px);
+      box-shadow: 0 40px 80px rgba(0,0,0,0.5), 0 0 0 1px rgba(255,255,255,0.05);
+    }
+
+    .dashboard-bar {
+      display: flex;
+      gap: 6px;
+      margin-bottom: 20px;
+    }
+
+    .dot { width: 10px; height: 10px; border-radius: 50%; }
+    .dot-red { background: #FF5F57; }
+    .dot-yellow { background: #FEBC2E; }
+    .dot-green { background: #28C840; }
+
+    .dash-stats {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 12px;
+      margin-bottom: 20px;
+    }
+
+    .stat-card {
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(255,255,255,0.07);
+      border-radius: 12px;
+      padding: 16px;
+      text-align: center;
+    }
+
+    .stat-num {
+      font-size: 26px;
+      font-weight: 800;
+      color: var(--white);
+      line-height: 1;
+    }
+
+    .stat-num.yellow { color: var(--yellow); }
+    .stat-num.blue { color: #4FC3F7; }
+
+    .stat-label {
+      font-size: 10px;
+      color: var(--text-muted);
+      margin-top: 4px;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+    }
+
+    .dash-chart {
+      display: flex;
+      align-items: flex-end;
+      gap: 6px;
+      height: 80px;
+      padding: 0 4px;
+      margin-bottom: 16px;
+    }
+
+    .bar {
+      flex: 1;
+      border-radius: 4px 4px 0 0;
+      background: rgba(255,219,1,0.15);
+      transition: background .2s;
+    }
+
+    .bar.active { background: var(--yellow); }
+    .bar.blue-bar { background: rgba(0,0,169,0.6); }
+
+    .dash-footer {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding-top: 16px;
+      border-top: 1px solid var(--border);
+    }
+
+    .dash-footer-label {
+      font-size: 11px;
+      color: var(--text-muted);
+    }
+
+    .badge-live {
+      display: flex;
+      align-items: center;
+      gap: 5px;
+      background: rgba(40,200,64,0.15);
+      border: 1px solid rgba(40,200,64,0.3);
+      color: #28C840;
+      padding: 4px 10px;
+      border-radius: 100px;
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+    }
+
+    .badge-live::before {
+      content: '';
+      width: 5px; height: 5px;
+      background: #28C840;
+      border-radius: 50%;
+      animation: pulse 1.5s infinite;
+    }
+
+    @keyframes pulse {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0.3; }
+    }
+
+    /* ─── TICKER ─── */
+    .ticker {
+      background: var(--yellow);
+      padding: 14px 0;
+      overflow: hidden;
+      position: relative;
+    }
+
+    .ticker-track {
+      display: flex;
+      gap: 0;
+      animation: ticker-scroll 30s linear infinite;
+      width: max-content;
+    }
+
+    .ticker-track:hover { animation-play-state: paused; }
+
+    @keyframes ticker-scroll {
+      from { transform: translateX(0); }
+      to { transform: translateX(-50%); }
+    }
+
+    .ticker-item {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      padding: 0 28px;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: #000;
+      white-space: nowrap;
+    }
+
+    .ticker-sep {
+      width: 4px; height: 4px;
+      background: rgba(0,0,0,0.3);
+      border-radius: 50%;
+      flex-shrink: 0;
+    }
+
+    /* ─── SECTIONS SHARED ─── */
+    section { padding: 100px 48px; }
+
+    .section-label {
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      margin-bottom: 16px;
+    }
+
+    .section-label.yellow { color: var(--yellow); }
+    .section-label.muted { color: var(--text-muted); }
+    .section-label.dark { color: rgba(0,0,0,0.4); }
+
+    h2 {
+      font-size: clamp(30px, 3.5vw, 46px);
+      font-weight: 800;
+      line-height: 1.15;
+      letter-spacing: -0.025em;
+    }
+
+    .section-intro {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 60px;
+      align-items: start;
+      margin-bottom: 64px;
+    }
+
+    .section-desc {
+      font-size: 15px;
+      line-height: 1.75;
+      color: var(--text-muted);
+      padding-top: 16px;
+    }
+
+    /* ─── PILLARS ─── */
+    .pillars {
+      background: var(--cream);
+    }
+
+    .pillars h2, .pillars .section-label { color: #000; }
+    .pillars .section-desc { color: rgba(0,0,0,0.55); }
+
+    .pillars-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 20px;
+    }
+
+    .pillar-card {
+      background: #fff;
+      border: 1px solid rgba(0,0,0,0.07);
+      border-radius: var(--radius);
+      padding: 36px;
+      position: relative;
+      overflow: hidden;
+      transition: box-shadow .25s, transform .25s;
+    }
+
+    .pillar-card:hover {
+      box-shadow: 0 20px 60px rgba(0,0,0,0.1);
+      transform: translateY(-3px);
+    }
+
+    .pillar-card::after {
+      content: '';
+      position: absolute;
+      top: 0; right: 0;
+      width: 80px; height: 80px;
+      background: radial-gradient(circle, rgba(255,219,1,0.12) 0%, transparent 70%);
+    }
+
+    .pillar-icon {
+      width: 48px; height: 48px;
+      background: rgba(0,0,169,0.08);
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 20px;
+      font-size: 22px;
+    }
+
+    .pillar-card h3 {
+      font-size: 18px;
+      font-weight: 700;
+      color: #000;
+      margin-bottom: 10px;
+    }
+
+    .pillar-card p {
+      font-size: 13px;
+      line-height: 1.65;
+      color: rgba(0,0,0,0.5);
+      margin-bottom: 20px;
+    }
+
+    .pillar-features {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      margin-bottom: 24px;
+    }
+
+    .pillar-features li {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 13px;
+      color: rgba(0,0,0,0.65);
+    }
+
+    .pillar-features li::before {
+      content: '✓';
+      width: 18px; height: 18px;
+      background: rgba(0,0,169,0.1);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 10px;
+      font-weight: 800;
+      color: var(--blue-brand);
+      flex-shrink: 0;
+    }
+
+    .pillar-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--blue-brand);
+      text-decoration: none;
+      transition: gap .2s;
+    }
+
+    .pillar-link:hover { gap: 10px; }
+
+    .pillar-num {
+      position: absolute;
+      top: 20px; right: 20px;
+      font-size: 11px;
+      font-weight: 700;
+      color: rgba(0,0,0,0.12);
+      letter-spacing: 0.1em;
+    }
+
+    /* ─── PRESENCE ─── */
+    .presence {
+      background: #0A0B1E;
+    }
+
+    .presence-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+    }
+
+    .country-card {
+      background: var(--blue-card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 36px;
+      transition: border-color .2s, transform .25s;
+    }
+
+    .country-card:hover {
+      border-color: rgba(255,219,1,0.3);
+      transform: translateY(-3px);
+    }
+
+    .country-flag {
+      font-size: 32px;
+      margin-bottom: 16px;
+      display: block;
+    }
+
+    .country-name {
+      font-size: 20px;
+      font-weight: 700;
+      margin-bottom: 4px;
+    }
+
+    .country-role {
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--yellow);
+      margin-bottom: 16px;
+    }
+
+    .country-desc {
+      font-size: 13px;
+      line-height: 1.65;
+      color: var(--text-muted);
+      margin-bottom: 20px;
+    }
+
+    .country-features {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 9px;
+    }
+
+    .country-features li {
+      display: flex;
+      align-items: flex-start;
+      gap: 8px;
+      font-size: 12px;
+      color: rgba(255,255,255,0.65);
+      line-height: 1.5;
+    }
+
+    .country-features li::before {
+      content: '→';
+      color: var(--yellow);
+      flex-shrink: 0;
+      font-size: 11px;
+      margin-top: 1px;
+    }
+
+    /* ─── INFRASTRUCTURE ─── */
+    .infra {
+      background: var(--blue-mid);
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 80px;
+      align-items: center;
+      padding: 100px 48px;
+    }
+
+    .infra-partners {
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+      margin: 36px 0;
+    }
+
+    .partner-row {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      background: rgba(255,255,255,0.04);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 16px 20px;
+      transition: border-color .2s;
+    }
+
+    .partner-row:hover { border-color: rgba(255,219,1,0.25); }
+
+    .partner-icon {
+      width: 40px; height: 40px;
+      background: rgba(255,219,1,0.1);
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 18px;
+      flex-shrink: 0;
+    }
+
+    .partner-info { flex: 1; }
+
+    .partner-name {
+      font-size: 14px;
+      font-weight: 600;
+    }
+
+    .partner-desc {
+      font-size: 12px;
+      color: var(--text-muted);
+      margin-top: 2px;
+    }
+
+    .infra-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 8px;
+    }
+
+    .tag {
+      padding: 5px 12px;
+      background: rgba(255,255,255,0.05);
+      border: 1px solid var(--border);
+      border-radius: 100px;
+      font-size: 11px;
+      font-weight: 500;
+      color: var(--text-muted);
+    }
+
+    .infra-map {
+      background: rgba(14,16,66,0.7);
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      padding: 40px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .map-visual {
+      font-size: 80px;
+      margin-bottom: 28px;
+      display: block;
+      filter: drop-shadow(0 0 20px rgba(255,219,1,0.3));
+    }
+
+    .map-stats {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 12px;
+      margin-bottom: 20px;
+    }
+
+    .map-stat {
+      background: rgba(255,255,255,0.04);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 14px;
+    }
+
+    .map-stat-num {
+      font-size: 28px;
+      font-weight: 800;
+      color: var(--yellow);
+    }
+
+    .map-stat-label {
+      font-size: 10px;
+      color: var(--text-muted);
+      margin-top: 2px;
+    }
+
+    .map-dots {
+      display: flex;
+      justify-content: center;
+      gap: 6px;
+      margin-top: 8px;
+    }
+
+    .map-dot {
+      width: 8px; height: 8px;
+      border-radius: 50%;
+      background: var(--yellow);
+      opacity: 0.5;
+      animation: map-pulse 2s ease-in-out infinite;
+    }
+
+    .map-dot:nth-child(2) { animation-delay: .4s; }
+    .map-dot:nth-child(3) { animation-delay: .8s; }
+
+    @keyframes map-pulse {
+      0%, 100% { transform: scale(1); opacity: 0.5; }
+      50% { transform: scale(1.6); opacity: 1; }
+    }
+
+    /* ─── BENEFITS ─── */
+    .benefits {
+      background: var(--cream);
+    }
+
+    .benefits h2, .benefits .section-label { color: #000; }
+    .benefits .section-desc { color: rgba(0,0,0,0.55); }
+
+    .benefits-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+    }
+
+    .benefit-card {
+      background: #fff;
+      border: 1px solid rgba(0,0,0,0.07);
+      border-radius: var(--radius);
+      padding: 32px;
+      transition: box-shadow .25s, transform .25s;
+    }
+
+    .benefit-card:hover {
+      box-shadow: 0 16px 48px rgba(0,0,0,0.09);
+      transform: translateY(-3px);
+    }
+
+    .benefit-icon {
+      width: 44px; height: 44px;
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 20px;
+      margin-bottom: 18px;
+    }
+
+    .benefit-icon.yellow { background: rgba(255,219,1,0.15); }
+    .benefit-icon.blue { background: rgba(0,0,169,0.08); }
+    .benefit-icon.green { background: rgba(0,200,100,0.1); }
+
+    .benefit-card h3 {
+      font-size: 16px;
+      font-weight: 700;
+      color: #000;
+      margin-bottom: 10px;
+    }
+
+    .benefit-card p {
+      font-size: 13px;
+      line-height: 1.65;
+      color: rgba(0,0,0,0.5);
+    }
+
+    /* ─── CTA SECTION ─── */
+    .cta-section {
+      background: linear-gradient(135deg, #0000A9 0%, #08092B 60%);
+      text-align: center;
+      padding: 100px 48px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .cta-section::before {
+      content: '';
+      position: absolute;
+      top: -100px; left: 50%;
+      transform: translateX(-50%);
+      width: 700px; height: 400px;
+      background: radial-gradient(ellipse, rgba(255,219,1,0.1) 0%, transparent 70%);
+    }
+
+    .cta-label {
+      display: inline-block;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--yellow);
+      margin-bottom: 20px;
+    }
+
+    .cta-section h2 {
+      font-size: clamp(32px, 4vw, 52px);
+      font-weight: 800;
+      letter-spacing: -0.025em;
+      margin-bottom: 20px;
+      max-width: 600px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .cta-section p {
+      font-size: 15px;
+      color: rgba(255,255,255,0.65);
+      max-width: 500px;
+      margin: 0 auto 40px;
+      line-height: 1.7;
+    }
+
+    .cta-btns {
+      display: flex;
+      gap: 14px;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    /* ─── FOOTER ─── */
+    footer {
+      background: #05061A;
+      padding: 70px 48px 36px;
+      border-top: 1px solid var(--border);
+    }
+
+    .footer-grid {
+      display: grid;
+      grid-template-columns: 2fr 1fr 1fr 1fr;
+      gap: 60px;
+      margin-bottom: 60px;
+    }
+
+    .footer-logo img { height: 8px; width: auto; margin-bottom: 16px; }
+
+    .footer-about {
+      font-size: 13px;
+      line-height: 1.7;
+      color: var(--text-muted);
+      max-width: 260px;
+      margin-bottom: 24px;
+    }
+
+    .footer-socials {
+      display: flex;
+      gap: 10px;
+    }
+
+    .social-btn {
+      width: 36px; height: 36px;
+      background: rgba(255,255,255,0.05);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 15px;
+      text-decoration: none;
+      transition: background .2s, border-color .2s;
+    }
+
+    .social-btn:hover {
+      background: rgba(255,219,1,0.1);
+      border-color: rgba(255,219,1,0.3);
+    }
+
+    .footer-col h4 {
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.35);
+      margin-bottom: 20px;
+    }
+
+    .footer-col ul {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 11px;
+    }
+
+    .footer-col a {
+      font-size: 13px;
+      color: var(--text-muted);
+      text-decoration: none;
+      transition: color .2s;
+    }
+
+    .footer-col a:hover { color: var(--yellow); }
+
+    .footer-bottom {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding-top: 32px;
+      border-top: 1px solid var(--border);
+    }
+
+    .footer-bottom p {
+      font-size: 12px;
+      color: rgba(255,255,255,0.3);
+    }
+
+    .footer-bottom-links {
+      display: flex;
+      gap: 24px;
+    }
+
+    .footer-bottom-links a {
+      font-size: 12px;
+      color: rgba(255,255,255,0.3);
+      text-decoration: none;
+      transition: color .2s;
+    }
+
+    .footer-bottom-links a:hover { color: var(--white); }
+
+    /* ─── SCROLL REVEAL ─── */
+    .reveal {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: opacity .6s ease, transform .6s ease;
+    }
+
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .reveal-d1 { transition-delay: .1s; }
+    .reveal-d2 { transition-delay: .2s; }
+    .reveal-d3 { transition-delay: .3s; }
+    .reveal-d4 { transition-delay: .4s; }
+
+    /* ─── RESPONSIVE ─── */
+    @media (max-width: 960px) {
+      nav { padding: 0 24px; }
+      .nav-links { display: none; }
+      section { padding: 70px 24px; }
+      .hero { grid-template-columns: 1fr; padding: 120px 24px 60px; gap: 50px; }
+      .hero-visual { display: none; }
+      .section-intro { grid-template-columns: 1fr; gap: 16px; }
+      .pillars-grid { grid-template-columns: 1fr; }
+      .presence-grid { grid-template-columns: 1fr; }
+      .benefits-grid { grid-template-columns: 1fr; }
+      .infra { grid-template-columns: 1fr; padding: 70px 24px; }
+      .footer-grid { grid-template-columns: 1fr 1fr; gap: 40px; }
+      .footer-bottom { flex-direction: column; gap: 12px; text-align: center; }
+      .cta-section { padding: 70px 24px; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ─── NAV ─── -->
+  <nav>
+    <a href="#" class="nav-logo">
+      <img src="logo.svg" alt="OPS My Tech" />
+    </a>
+    <ul class="nav-links">
+      <li><a href="#services">Services</a></li>
+      <li><a href="#tarifs">Tarifs</a></li>
+      <li><a href="#equipes">Équipes</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+    <div class="nav-ctas">
+      <a href="#services" class="btn btn-ghost">Découvrir nos services</a>
+      <a href="#contact" class="btn btn-yellow">Démarrer un projet</a>
+    </div>
+  </nav>
+
+  <!-- ─── HERO ─── -->
+  <section class="hero" id="services">
+    <div class="hero-content">
+      <div class="hero-badge">A Platform Tech &amp; Logistique</div>
+      <h1>
+        Accélérez votre<br />
+        business en Europe<br />
+        <span class="accent">avec une solution<br />tech &amp; logistique<br />intégrée</span>
+      </h1>
+      <p class="hero-desc">
+        Maîtrisez l'ensemble de la chaîne e-commerce — Cloud, ERP et
+        distribution internationale — pour vous concentrer sur votre croissance.
+      </p>
+      <div class="hero-ctas">
+        <a href="#contact" class="btn btn-yellow btn-lg">
+          Démarrer un projet →
+        </a>
+        <a href="#services" class="btn btn-ghost btn-lg">Voir nos solutions</a>
+      </div>
+      <div class="hero-trusted">
+        <div class="hero-trusted-avatars">
+          <div class="avatar">JD</div>
+          <div class="avatar">AM</div>
+          <div class="avatar">SR</div>
+        </div>
+        <div class="hero-trusted-text">
+          <strong>+50 entreprises accompagnées</strong>
+          en Suisse, France &amp; Italie
+        </div>
+      </div>
+    </div>
+    <div class="hero-visual">
+      <div class="dashboard">
+        <div class="dashboard-bar">
+          <div class="dot dot-red"></div>
+          <div class="dot dot-yellow"></div>
+          <div class="dot dot-green"></div>
+        </div>
+        <div class="dash-stats">
+          <div class="stat-card">
+            <div class="stat-num">1 284</div>
+            <div class="stat-label">Commandes / mois</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-num yellow">98.4%</div>
+            <div class="stat-label">Taux de livraison</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-num blue">3</div>
+            <div class="stat-label">Pays couverts</div>
+          </div>
+        </div>
+        <div class="dash-chart">
+          <div class="bar" style="height:35%"></div>
+          <div class="bar" style="height:55%"></div>
+          <div class="bar blue-bar" style="height:70%"></div>
+          <div class="bar" style="height:45%"></div>
+          <div class="bar active" style="height:90%"></div>
+          <div class="bar" style="height:65%"></div>
+          <div class="bar blue-bar" style="height:80%"></div>
+          <div class="bar" style="height:50%"></div>
+          <div class="bar active" style="height:75%"></div>
+          <div class="bar" style="height:60%"></div>
+        </div>
+        <div class="dash-footer">
+          <span class="dash-footer-label">Tableau de bord logistique</span>
+          <span class="badge-live">LIVE</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── TICKER ─── -->
+  <div class="ticker">
+    <div class="ticker-track">
+      <div class="ticker-item">E-Commerce <span class="ticker-sep"></span></div>
+      <div class="ticker-item">Cloud &amp; ERP SaaS <span class="ticker-sep"></span></div>
+      <div class="ticker-item">Logistique Export <span class="ticker-sep"></span></div>
+      <div class="ticker-item">Open Source <span class="ticker-sep"></span></div>
+      <div class="ticker-item">TikTok · Meta · Google Ads <span class="ticker-sep"></span></div>
+      <div class="ticker-item">Marketplace Distrib <span class="ticker-sep"></span></div>
+      <div class="ticker-item">Distribution Internationale <span class="ticker-sep"></span></div>
+      <div class="ticker-item">Suisse · France · Italie <span class="ticker-sep"></span></div>
+      <div class="ticker-item">E-Commerce <span class="ticker-sep"></span></div>
+      <div class="ticker-item">Cloud &amp; ERP SaaS <span class="ticker-sep"></span></div>
+      <div class="ticker-item">Logistique Export <span class="ticker-sep"></span></div>
+      <div class="ticker-item">Open Source <span class="ticker-sep"></span></div>
+      <div class="ticker-item">TikTok · Meta · Google Ads <span class="ticker-sep"></span></div>
+      <div class="ticker-item">Marketplace Distrib <span class="ticker-sep"></span></div>
+      <div class="ticker-item">Distribution Internationale <span class="ticker-sep"></span></div>
+      <div class="ticker-item">Suisse · France · Italie <span class="ticker-sep"></span></div>
+    </div>
+  </div>
+
+  <!-- ─── 4 PILLARS ─── -->
+  <section class="pillars" id="equipes">
+    <div class="section-intro">
+      <div>
+        <div class="section-label dark">Ce que nous faisons</div>
+        <h2 style="color:#000">4 piliers pour<br />votre croissance</h2>
+      </div>
+      <p class="section-desc">
+        Du site e-commerce à la livraison chez votre client, en passant par
+        l'intégration ERP et les campagnes digitales — OPS My Tech coordonne
+        l'ensemble pour que vous vous concentriez sur votre cœur de métier.
+      </p>
+    </div>
+    <div class="pillars-grid">
+      <div class="pillar-card reveal reveal-d1">
+        <span class="pillar-num">01</span>
+        <div class="pillar-icon">🛒</div>
+        <h3>E-Commerce</h3>
+        <p>Créez et optimisez votre boutique en ligne avec les meilleures technologies du marché pour maximiser vos conversions.</p>
+        <ul class="pillar-features">
+          <li>Shopify, WooCommerce, PrestaShop</li>
+          <li>Optimisation du tunnel de conversion</li>
+          <li>Gestion des catalogues produits</li>
+          <li>Intégration des paiements en Europe</li>
+        </ul>
+        <a href="#contact" class="pillar-link">En savoir plus →</a>
+      </div>
+      <div class="pillar-card reveal reveal-d2">
+        <span class="pillar-num">02</span>
+        <div class="pillar-icon">💻</div>
+        <h3>Solutions IT</h3>
+        <p>Des outils numériques sur mesure pour piloter votre activité avec agilité et visibilité en temps réel.</p>
+        <ul class="pillar-features">
+          <li>Déploiement ERP &amp; CRM</li>
+          <li>Intégration Cloud AWS / GCP</li>
+          <li>Automatisation des processus</li>
+          <li>Support IT 24/7</li>
+        </ul>
+        <a href="#contact" class="pillar-link">En savoir plus →</a>
+      </div>
+      <div class="pillar-card reveal reveal-d3">
+        <span class="pillar-num">03</span>
+        <div class="pillar-icon">🚚</div>
+        <h3>Logistique</h3>
+        <p>Expédiez en Europe avec fiabilité grâce à notre réseau de partenaires logistiques certifiés et notre suivi temps réel.</p>
+        <ul class="pillar-features">
+          <li>Entrepôts CH, FR, IT — Hubs EU</li>
+          <li>Transporteurs DHL, UPS, PostEx</li>
+          <li>Gestion des retours</li>
+          <li>Tracking en temps réel 24/7</li>
+        </ul>
+        <a href="#contact" class="pillar-link">En savoir plus →</a>
+      </div>
+      <div class="pillar-card reveal reveal-d4">
+        <span class="pillar-num">04</span>
+        <div class="pillar-icon">⚙️</div>
+        <h3>Open Source &amp; Dev</h3>
+        <p>Développements sur mesure basés sur des technos open source éprouvées — flexibilité maximale sans dépendance éditeur.</p>
+        <ul class="pillar-features">
+          <li>Odoo, Magento, N8N</li>
+          <li>Intégration API &amp; Webhooks</li>
+          <li>Développement sur mesure</li>
+          <li>Architecture microservices</li>
+        </ul>
+        <a href="#contact" class="pillar-link">En savoir plus →</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── PRESENCE ─── -->
+  <section class="presence">
+    <div class="section-intro">
+      <div>
+        <div class="section-label yellow">Nos marchés</div>
+        <h2>Présence stratégique<br />en Europe</h2>
+      </div>
+      <p class="section-desc">
+        Une approche locale, une exécution internationale. OPS My Tech est
+        implanté dans 3 marchés clés pour accompagner les PME dans leur
+        expansion européenne avec une expertise terrain inégalée.
+      </p>
+    </div>
+    <div class="presence-grid">
+      <div class="country-card reveal reveal-d1">
+        <span class="country-flag">🇨🇭</span>
+        <div class="country-name">Suisse</div>
+        <div class="country-role">Siège principal — HUB</div>
+        <p class="country-desc">Notre base opérationnelle principale avec des équipes tech et logistique dédiées pour gérer l'ensemble des opérations européennes.</p>
+        <ul class="country-features">
+          <li>Entrepôts logistiques VD, VS, TI</li>
+          <li>Couverture logistique CH, DE, AT</li>
+          <li>Support multilingue DE / FR / IT</li>
+        </ul>
+      </div>
+      <div class="country-card reveal reveal-d2">
+        <span class="country-flag">🇮🇹</span>
+        <div class="country-name">Italie</div>
+        <div class="country-role">Développement — ITA</div>
+        <p class="country-desc">Centre d'excellence technique et hub de distribution pour les marchés méditerranéens avec accès aux principaux ports italiens.</p>
+        <ul class="country-features">
+          <li>Partenaires cross-docks</li>
+          <li>Distribution régionale nord-IT</li>
+          <li>Livraison rapide sous 24/48H</li>
+        </ul>
+      </div>
+      <div class="country-card reveal reveal-d3">
+        <span class="country-flag">🇫🇷</span>
+        <div class="country-name">France</div>
+        <div class="country-role">Acquisition / Croissance</div>
+        <p class="country-desc">Marché prioritaire pour l'acquisition client et la croissance e-commerce avec un fort focus sur les campagnes digitales et la conversion.</p>
+        <ul class="country-features">
+          <li>Campagnes Meta · TikTok · Google</li>
+          <li>Distribution &amp; expédition FR</li>
+          <li>Accompagnement réglementaire</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── INFRASTRUCTURE ─── -->
+  <section class="infra">
+    <div class="infra-content">
+      <div class="section-label yellow">Infrastructure &amp; Logistique</div>
+      <h2>Une infrastructure<br />logistique performante</h2>
+      <p style="color:var(--text-muted);font-size:14px;line-height:1.7;margin:20px 0 8px;">
+        Notre réseau de partenaires logistiques triés sur le volet garantit des
+        délais de livraison compétitifs dans toute l'Europe, avec une traçabilité
+        en temps réel et une gestion optimisée des stocks.
+      </p>
+      <div class="infra-partners">
+        <div class="partner-row reveal">
+          <div class="partner-icon">📦</div>
+          <div class="partner-info">
+            <div class="partner-name">Carrefour DBS</div>
+            <div class="partner-desc">Distribution &amp; stockage grande distribution</div>
+          </div>
+          <div class="tag">B2B</div>
+        </div>
+        <div class="partner-row reveal reveal-d1">
+          <div class="partner-icon">✈️</div>
+          <div class="partner-info">
+            <div class="partner-name">Fedex · DPD</div>
+            <div class="partner-desc">Express international &amp; dernière mile</div>
+          </div>
+          <div class="tag">Express</div>
+        </div>
+        <div class="partner-row reveal reveal-d2">
+          <div class="partner-icon">🏭</div>
+          <div class="partner-info">
+            <div class="partner-name">PostEx · LTM</div>
+            <div class="partner-desc">Logistique économique &amp; entreposage EU</div>
+          </div>
+          <div class="tag">EU</div>
+        </div>
+      </div>
+      <div class="infra-tags">
+        <span class="tag">Shopify</span>
+        <span class="tag">ERP</span>
+        <span class="tag">API</span>
+        <span class="tag">Temps Réel</span>
+        <span class="tag">Cloud AWS</span>
+        <span class="tag">Multi-entrepôts</span>
+      </div>
+    </div>
+    <div class="infra-map reveal reveal-d2">
+      <span class="map-visual">🗺️</span>
+      <div class="map-stats">
+        <div class="map-stat">
+          <div class="map-stat-num">3</div>
+          <div class="map-stat-label">Pays</div>
+        </div>
+        <div class="map-stat">
+          <div class="map-stat-num">4</div>
+          <div class="map-stat-label">Hubs logistiques</div>
+        </div>
+        <div class="map-stat">
+          <div class="map-stat-num">EU</div>
+          <div class="map-stat-label">Zone couverte</div>
+        </div>
+      </div>
+      <div class="map-dots">
+        <div class="map-dot"></div>
+        <div class="map-dot"></div>
+        <div class="map-dot"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── BENEFITS ─── -->
+  <section class="benefits">
+    <div class="section-intro">
+      <div>
+        <div class="section-label dark">Nos engagements</div>
+        <h2 style="color:#000">Ce que vous obtenez<br />avec OPS My Tech</h2>
+      </div>
+      <p class="section-desc">
+        Nous nous engageons sur des résultats concrets et mesurables. Chaque
+        service est conçu pour générer de la valeur réelle sur votre activité,
+        pas uniquement des indicateurs.
+      </p>
+    </div>
+    <div class="benefits-grid">
+      <div class="benefit-card reveal reveal-d1">
+        <div class="benefit-icon yellow">🚀</div>
+        <h3>Livraison rapide en Europe</h3>
+        <p>Expéditions en 24/48H vers la France, l'Italie et les zones limitrophes grâce à notre réseau de transporteurs express partenaires.</p>
+      </div>
+      <div class="benefit-card reveal reveal-d2">
+        <div class="benefit-icon blue">🌐</div>
+        <h3>Réseau logistique optimisé</h3>
+        <p>Un maillage de hubs stratégiques en Europe pour réduire les coûts de transport et améliorer les délais de livraison à chaque commande.</p>
+      </div>
+      <div class="benefit-card reveal reveal-d3">
+        <div class="benefit-icon green">🔒</div>
+        <h3>Solutions cloud sécurisées</h3>
+        <p>Infrastructure cloud souveraine avec chiffrement de bout en bout, conformité RGPD et sauvegardes automatiques quotidiennes.</p>
+      </div>
+      <div class="benefit-card reveal reveal-d1">
+        <div class="benefit-icon yellow">👤</div>
+        <h3>Un interlocuteur unique</h3>
+        <p>Un chef de projet dédié coordonne tech, logistique et marketing pour vous. Fini les allers-retours entre prestataires multiples.</p>
+      </div>
+      <div class="benefit-card reveal reveal-d2">
+        <div class="benefit-icon blue">📊</div>
+        <h3>Résultats mesurables</h3>
+        <p>Dashboard temps réel, rapports hebdomadaires et KPIs personnalisés pour suivre chaque euro investi et chaque colis expédié.</p>
+      </div>
+      <div class="benefit-card reveal reveal-d3">
+        <div class="benefit-icon green">🌍</div>
+        <h3>Expertise internationale</h3>
+        <p>Une équipe multilingue avec une connaissance approfondie des marchés suisse, français et italien — réglementations incluses.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── CTA ─── -->
+  <section class="cta-section" id="contact">
+    <div class="cta-label">Prêt à démarrer</div>
+    <h2>Lancez votre projet<br />dès aujourd'hui</h2>
+    <p>
+      Prenez rendez-vous avec notre équipe pour une analyse gratuite de vos
+      besoins et un plan d'action personnalisé sous 48H.
+    </p>
+    <div class="cta-btns">
+      <a href="mailto:mahmoudmaroua727@gmail.com" class="btn btn-yellow btn-lg">
+        Planifier un rendez-vous →
+      </a>
+      <a href="#services" class="btn btn-ghost btn-lg">Voir nos services</a>
+    </div>
+  </section>
+
+  <!-- ─── FOOTER ─── -->
+  <footer>
+    <div class="footer-grid">
+      <div>
+      
+
+        <p class="footer-about" >
+          OPS My Tech est la plateforme tech &amp; logistique intégrée pour les
+          PME et e-commerçants qui veulent conquérir l'Europe.
+        </p>
+        <div class="footer-socials">
+          <a href="#" class="social-btn">in</a>
+          <a href="#" class="social-btn">𝕏</a>
+          <a href="#" class="social-btn">ig</a>
+          <a href="#" class="social-btn">yt</a>
+        </div>
+      </div>
+      <div class="footer-col">
+        <h4>Services</h4>
+        <ul>
+          <li><a href="#">E-Commerce</a></li>
+          <li><a href="#">Solutions IT</a></li>
+          <li><a href="#">Logistique</a></li>
+          <li><a href="#">Open Source</a></li>
+          <li><a href="#">Marketing Digital</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Marchés</h4>
+        <ul>
+          <li><a href="#">🇨🇭 Suisse</a></li>
+          <li><a href="#">🇮🇹 Italie</a></li>
+          <li><a href="#">🇫🇷 France</a></li>
+          <li><a href="#">🇩🇪 Allemagne</a></li>
+          <li><a href="#">Europe Centrale</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Entreprise</h4>
+        <ul>
+          <li><a href="#">À propos</a></li>
+          <li><a href="#">Notre équipe</a></li>
+          <li><a href="#">Tarifs</a></li>
+          <li><a href="#">Blog</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>© 2026 OPS My Tech. Tous droits réservés.</p>
+      <div class="footer-bottom-links">
+        <a href="#">Mentions légales</a>
+        <a href="#">Politique de confidentialité</a>
+        <a href="#">CGU</a>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // Scroll reveal
+    const reveals = document.querySelectorAll('.reveal');
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(e => {
+        if (e.isIntersecting) {
+          e.target.classList.add('visible');
+          observer.unobserve(e.target);
+        }
+      });
+    }, { threshold: 0.12 });
+    reveals.forEach(el => observer.observe(el));
+
+    // Nav background on scroll
+    const navEl = document.querySelector('nav');
+    window.addEventListener('scroll', () => {
+      navEl.style.background = window.scrollY > 40
+        ? 'rgba(8,9,43,0.97)'
+        : 'rgba(8,9,43,0.85)';
+    });
+  </script>
+
+</body>
+</html>
